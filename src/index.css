@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -98,6 +99,53 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-tech-gray text-white;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
   }
+}
+
+@layer components {
+  .glow-text {
+    text-shadow: 0 0 10px rgba(255, 51, 51, 0.5);
+  }
+
+  .tech-border {
+    border: 1px solid rgba(255, 51, 51, 0.3);
+    box-shadow: 0 0 20px rgba(255, 51, 51, 0.1);
+  }
+
+  .matrix-bg {
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a0a0a 50%, #0a0a0a 100%);
+  }
+
+  .cyber-grid {
+    background-image: 
+      linear-gradient(rgba(255, 51, 51, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 51, 51, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+
+  .glass-effect {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #dc2626;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ff3333;
 }
