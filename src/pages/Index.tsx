@@ -248,15 +248,19 @@ const Index = () => {
             <div className="relative">
               <div className="glass-effect border border-red-glow/30 rounded-2xl overflow-hidden backdrop-blur-xl">
                 <div className="aspect-video bg-gradient-to-br from-red-dark/20 to-red-secondary/20 flex items-center justify-center relative">
-                  <img 
-                    src="https://images.unsplash.com/photo-1551601651-2a8555f1a136?w=800&h=450&fit=crop&crop=center" 
-                    alt="Surgical procedure"
-                    className="w-full h-full object-cover opacity-80"
-                  />
+                 <video 
+  src="surgeryvideo.mp4" 
+  controls 
+  autoPlay 
+  loop 
+  muted 
+  className="w-full h-full object-cover opacity-80"
+>
+  Your browser does not support the video tag.
+</video>
+
                   <div className="absolute inset-0 bg-red-glow/10 flex items-center justify-center">
-                    <Button size="lg" className="bg-red-glow/80 hover:bg-red-glow text-white rounded-full w-20 h-20 backdrop-blur-xl">
-                      <Play className="w-8 h-8 ml-1" />
-                    </Button>
+                 
                   </div>
                   <div className="absolute top-4 left-4 glass-effect px-3 py-1 rounded-full backdrop-blur-xl">
                     <span className="text-red-glow text-sm font-medium flex items-center">
