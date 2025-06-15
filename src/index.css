@@ -101,17 +101,19 @@
   body {
     @apply bg-tech-gray text-white;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: radial-gradient(ellipse at top, #1a0a0a 0%, #0a0a0a 100%);
+    min-height: 100vh;
   }
 }
 
 @layer components {
   .glow-text {
-    text-shadow: 0 0 10px rgba(255, 51, 51, 0.5);
+    text-shadow: 0 0 10px rgba(255, 51, 51, 0.5), 0 0 20px rgba(255, 51, 51, 0.3), 0 0 30px rgba(255, 51, 51, 0.2);
   }
 
   .tech-border {
     border: 1px solid rgba(255, 51, 51, 0.3);
-    box-shadow: 0 0 20px rgba(255, 51, 51, 0.1);
+    box-shadow: 0 0 20px rgba(255, 51, 51, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1);
   }
 
   .matrix-bg {
@@ -126,26 +128,152 @@
   }
 
   .glass-effect {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 
+      inset 0 1px 0 rgba(255, 255, 255, 0.2),
+      0 4px 24px rgba(0, 0, 0, 0.3),
+      0 0 40px rgba(255, 51, 51, 0.1);
+  }
+
+  .medical-glass {
+    background: rgba(220, 38, 38, 0.05);
+    backdrop-filter: blur(25px);
+    border: 1px solid rgba(220, 38, 38, 0.2);
+    box-shadow: 
+      inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      0 8px 32px rgba(220, 38, 38, 0.2),
+      0 0 60px rgba(255, 51, 51, 0.1);
+  }
+
+  .surgical-glow {
+    box-shadow: 
+      0 0 20px rgba(255, 51, 51, 0.3),
+      0 0 40px rgba(255, 51, 51, 0.2),
+      0 0 60px rgba(255, 51, 51, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .medical-pattern {
+    background-image: 
+      radial-gradient(circle at 25% 25%, rgba(255, 51, 51, 0.1) 2px, transparent 2px),
+      radial-gradient(circle at 75% 75%, rgba(255, 51, 51, 0.05) 2px, transparent 2px);
+    background-size: 100px 100px;
   }
 }
 
-/* Custom scrollbar */
+/* Enhanced scrollbar with medical theme */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 12px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #1a1a1a;
+  background: rgba(26, 26, 26, 0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 6px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #dc2626;
-  border-radius: 4px;
+  background: linear-gradient(45deg, #dc2626, #ff3333);
+  border-radius: 6px;
+  box-shadow: 0 0 10px rgba(255, 51, 51, 0.3);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #ff3333;
+  background: linear-gradient(45deg, #ff3333, #ff5555);
+  box-shadow: 0 0 15px rgba(255, 51, 51, 0.5);
+}
+
+/* Medical animations */
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+@keyframes medical-pulse {
+  0%, 100% { 
+    box-shadow: 0 0 20px rgba(255, 51, 51, 0.3);
+    transform: scale(1);
+  }
+  50% { 
+    box-shadow: 0 0 40px rgba(255, 51, 51, 0.6);
+    transform: scale(1.02);
+  }
+}
+
+@keyframes surgical-scan {
+  0% { 
+    background-position: -100% 0;
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% { 
+    background-position: 100% 0;
+    opacity: 0;
+  }
+}
+
+/* Form styling enhancements */
+input, textarea {
+  transition: all 0.3s ease;
+}
+
+input:focus, textarea:focus {
+  box-shadow: 
+    0 0 0 2px rgba(255, 51, 51, 0.2),
+    0 0 20px rgba(255, 51, 51, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 51, 51, 0.5);
+}
+
+/* Button enhancements */
+button {
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+button:hover {
+  transform: translateY(-2px);
+}
+
+button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s;
+}
+
+button:hover::before {
+  left: 100%;
+}
+
+/* Medical card effects */
+.medical-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.medical-card::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent, rgba(255, 51, 51, 0.1), transparent);
+  transform: rotate(45deg);
+  transition: all 0.5s;
+  opacity: 0;
+}
+
+.medical-card:hover::after {
+  animation: surgical-scan 2s ease-in-out;
 }
